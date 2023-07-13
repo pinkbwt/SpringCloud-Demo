@@ -1,0 +1,20 @@
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.alibaba.cloud:spring-cloud-alibaba-sentinel-gateway'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
+    implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+    implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+
+
+//    implementation 'com.nepxion:discovery-plugin-register-center-starter-nacos:6.21.0'
+//    implementation 'com.nepxion:discovery-plugin-config-center-starter-nacos:6.21.0'
+//    implementation 'com.nepxion:discovery-plugin-admin-center-starter:6.21.0'
+//    implementation 'com.nepxion:discovery-plugin-strategy-starter-gateway:6.21.0'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+

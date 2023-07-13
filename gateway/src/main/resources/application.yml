@@ -1,0 +1,59 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: SentinelCloudGateway
+  main:
+    web-application-type: reactive
+  config:
+    import:
+      - optional:nacos:gateway-center-dev.yaml
+
+  cloud:
+
+    sentinel:
+      filter:
+        enabled: false
+      log:
+        dir: E:\\alibaba\\sentinel
+      eager: true
+      transport:
+        port: 8719
+        dashboard: 127.0.0.1:8080
+
+      scg:
+        fallback:
+          content-type: application/json
+          mode: redirect
+          response-status: 429
+          redirect: https://baidu.com
+
+
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        group: DEFAULT_GROUP
+        namespace: e2bfde91-9c60-4339-958d-4ea7e5cbdbe2
+        register-enabled: true
+        username: nacos
+        password: nacos
+
+      config:
+        server-addr: 127.0.0.1:8848
+        group: DEFAULT_GROUP
+        namespace: e2bfde91-9c60-4339-958d-4ea7e5cbdbe2
+        username: nacos
+        password: nacos
+
+      gateway:
+        discovery:
+          locator:
+            enabled: true  #表明gateway开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务
+            lower-case-service-id: true  #是将请求路径上的服务名配置为小写（因为服务注册的时候，向注册中心注册时将服务名转成大写的了
+
+
+
+
+
+

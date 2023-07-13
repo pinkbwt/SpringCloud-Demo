@@ -1,0 +1,62 @@
+buildscript {
+    ext {
+        springBootVersion='3.1.1'
+        springCloudDependenciesVersion='2022.0.3'
+        springCloudAlibabaVersion='2022.0.0.0-RC2'
+        springDependencyManagementVersion='1.1.0'
+        sourceCompatibilityVersion='17'
+        targetCompatibilityVersion='17'
+    }
+}
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+}
+
+group='com.lion'
+version='0.1-SNAPSHOT'
+sourceCompatibility=JavaVersion.VERSION_17
+targetCompatibility=JavaVersion.VERSION_17
+
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    repositories {
+        maven {
+            allowInsecureProtocol = true
+            url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencyManagement {
+        imports {
+            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
+        }
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        }
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudDependenciesVersion}"
+        }
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.springframework.boot:spring-boot-configuration-processor'
+        implementation 'com.github.xiaoymin:knife4j-openapi3-jakarta-spring-boot-starter:4.1.0'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+
+}
+
+
+

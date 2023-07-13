@@ -1,0 +1,5 @@
+rootProject.name = 'SpringCloud-Demo'
+include 'gateway'
+include 'microservice'
+include 'client'
+
